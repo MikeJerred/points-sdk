@@ -1,0 +1,38 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v.*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v4
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.9.0
+          cache: 'npm'
+
+      - name: Setup
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
+
+      - name: Publish
+        env:
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_PUBLISH_TOKEN}
+          npm publish --access public
