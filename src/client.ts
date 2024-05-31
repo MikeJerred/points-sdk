@@ -1,6 +1,8 @@
+import type { UUID } from 'crypto';
+
 export class Client {
   constructor(
-    private apiKey: `${string}-${string}-${string}-${string}-${string}`,
+    private apiKey: UUID,
     private apiUrl: string,
     private campaignId: number,
   ) {}
@@ -21,7 +23,7 @@ export class Client {
   async distributePoints(eventName: string, pointsData: { points: number, address: `0x${string}` }) {
     const url = new URL(`campaigns/${this.campaignId}/points`, this.apiUrl);
 
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: this.createHeaders(),
       body: JSON.stringify({
@@ -30,7 +32,6 @@ export class Client {
         points: pointsData.points,
       }),
     });
-    await response.json();
   }
 
   private createHeaders() {
