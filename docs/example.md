@@ -1,16 +1,4 @@
-# Points SDK
-
-A client SDK for interacting with the points REST API.
-
-## Installation
-
-Install from npm:
-
-```bash
-npm install @mikejerred/points-sdk --save
-```
-
-## Usage Example
+# Example
 
 ```typescript
 import { createCampaign, createClient } from '@mikejerred/points-sdk';
