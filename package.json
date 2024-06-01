@@ -1,12 +1,12 @@
 {
-  "name": "@absinthe-points/sdk",
-  "version": "1.0.0",
+  "name": "@mikejerred/points-sdk",
+  "version": "1.0.1",
   "description": "Absinthe points client library",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/MikeJerred/absinthe-points-sdk.git"
+    "url": "https://github.com/MikeJerred/points-sdk.git"
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
